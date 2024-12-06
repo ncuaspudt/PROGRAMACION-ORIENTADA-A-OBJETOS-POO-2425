@@ -1,5 +1,7 @@
 #Ejemplo de la Técnica de programación_Encapsulación
 
+
+
 class CuentaBancaria:
     def __init__(self, titular, saldo_inicial):
         self.__titular = titular  # Atributo privado: no accesible directamente desde fuera

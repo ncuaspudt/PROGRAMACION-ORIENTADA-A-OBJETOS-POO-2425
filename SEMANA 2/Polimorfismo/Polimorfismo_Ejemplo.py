@@ -1,4 +1,5 @@
 # Ejemplo de la Técnica de programación_Polimorfismo
+
 class Animal:
     def hacer_sonido(self):
         print("El animal hace un sonido genérico")

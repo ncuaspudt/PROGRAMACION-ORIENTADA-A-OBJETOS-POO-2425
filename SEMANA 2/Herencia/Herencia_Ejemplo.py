@@ -1,4 +1,5 @@
 # Ejemplo de la Técnica de programación_Herencia
+
 class Animal:
     def __init__(self, nombre):
         self.nombre = nombre

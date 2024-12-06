@@ -1,5 +1,6 @@
 # Ejemplo de la Técnica de programación_Abstracción
 
+
 from abc import ABC, abstractmethod  # Importamos las clases necesarias para crear clases abstractas
 
 # Clase base abstracta que representa un Vehiculo
