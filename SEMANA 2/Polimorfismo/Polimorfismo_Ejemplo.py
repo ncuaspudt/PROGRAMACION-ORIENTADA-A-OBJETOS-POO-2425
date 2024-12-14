@@ -43,6 +43,7 @@ mi_perro1 = Dog("Tobi", "blanco")
 mi_gato1 = Cat("Dogi", "Miauu")
 
 
+
 # Llamar a la función de polimorfismo
 mostrar_sonido(mi_perro1)  # Polimorfismo: el perro hace un sonido
 mostrar_sonido(mi_gato1)  # Polimorfismo: el gato hace un sonido

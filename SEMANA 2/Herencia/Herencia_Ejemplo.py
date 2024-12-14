@@ -29,6 +29,7 @@ class Gato(Animal):
     def hacer_sonido(self):
         print(f"{self.nombre} (un gato {self.color}) dice: ¡Miau!")
 
+
 # Crear instancias de Perro y Gato
 mi_perro = Perro("Tobi", "Bichon frise")
 mi_gato = Gato("Dogi", "blanco")

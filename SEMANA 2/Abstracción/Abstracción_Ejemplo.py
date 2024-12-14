@@ -20,6 +20,7 @@ class Cuadrado(Figura):
         return self.lado * self.lado
 
 
+
     # Implementación del cálculo del perímetro
     def perimetro(self):
         return 4 * self.lado

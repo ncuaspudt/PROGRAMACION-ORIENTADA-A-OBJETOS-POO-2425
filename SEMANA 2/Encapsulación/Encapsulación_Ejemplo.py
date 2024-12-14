@@ -20,6 +20,7 @@ class CuentaBancaria:
         else:
             print("La cantidad a depositar debe ser mayor a cero.")
 
+
     # Método para retirar dinero
     def retirar(self, cantidad):
         if cantidad > 0 and cantidad <= self.__saldo:
