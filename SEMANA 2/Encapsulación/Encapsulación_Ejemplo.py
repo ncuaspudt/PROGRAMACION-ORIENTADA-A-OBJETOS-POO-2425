@@ -39,6 +39,7 @@ class CuentaBancaria:
         self.__titular = nuevo_titular
         print(f"El nuevo titular de la cuenta es: {self.__titular}")
 
+
 # Crear una instancia de CuentaBancaria
 cuenta = CuentaBancaria("Juan Pérez", 500)
 

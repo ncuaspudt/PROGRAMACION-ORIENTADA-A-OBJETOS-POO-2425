@@ -34,7 +34,6 @@ class Gato(Animal):
 mi_perro = Perro("Tobi", "Bichon frise")
 mi_gato = Gato("Dogi", "blanco")
 
-
 # Llamar al método hacer_sonido para cada uno
 mi_perro.hacer_sonido()
 mi_gato.hacer_sonido()
