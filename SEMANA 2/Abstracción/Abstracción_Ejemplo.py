@@ -19,6 +19,7 @@ class Cuadrado(Figura):
     def area(self):
         return self.lado * self.lado
 
+
     # Implementación del cálculo del perímetro
     def perimetro(self):
         return 4 * self.lado

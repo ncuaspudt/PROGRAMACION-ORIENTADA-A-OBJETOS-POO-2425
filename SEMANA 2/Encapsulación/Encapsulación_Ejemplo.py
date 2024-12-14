@@ -7,6 +7,7 @@ class CuentaBancaria:
         self.__titular = titular  # Atributo privado: no accesible directamente desde fuera
         self.__saldo = saldo_inicial  # Atributo privado: no accesible directamente desde fuera
 
+
     # Getter para el saldo
     def obtener_saldo(self):
         return self.__saldo

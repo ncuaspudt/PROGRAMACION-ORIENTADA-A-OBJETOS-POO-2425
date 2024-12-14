@@ -18,6 +18,7 @@ class Perro(Animal):
     def hacer_sonido(self):
         print(f"{self.nombre} (un {self.raza}) dice: ¡Guau!")
 
+
 # Clase hija (subclase) que hereda de Animal
 class Gato(Animal):
     def __init__(self, nombre, color):
