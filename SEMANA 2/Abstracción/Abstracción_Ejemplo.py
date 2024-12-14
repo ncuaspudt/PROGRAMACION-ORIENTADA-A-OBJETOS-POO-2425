@@ -26,6 +26,7 @@ class Cuadrado(Figura):
         return 4 * self.lado
 
 
+
 # Crear un objeto de la clase Cuadrado
 mi_cuadrado = Cuadrado(5)
 

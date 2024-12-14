@@ -38,6 +38,7 @@ def mostrar_sonido(animal):
     print(animal.hacer_sonido())
 
 
+
 # Crear los objetos
 mi_perro1 = Dog("Tobi", "blanco")
 mi_gato1 = Cat("Dogi", "Miauu")

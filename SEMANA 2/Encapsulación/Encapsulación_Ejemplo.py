@@ -29,6 +29,7 @@ class CuentaBancaria:
         else:
             print("Fondos insuficientes o cantidad no válida.")
 
+
     # Getter para obtener el titular (se podría crear un setter si se quisiera cambiar el titular)
     def obtener_titular(self):
         return self.__titular
