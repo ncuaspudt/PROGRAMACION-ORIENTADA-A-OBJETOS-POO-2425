@@ -1,71 +1,33 @@
 # Ejemplo de la Técnica de programación_Abstracción
+# Simplifica la realidad, concentrándose en los aspectos esenciales de un objeto y ocultando los detalles innecesarios.
+
+# Clase base "Figura"
+class Figura:
+    def area(self):
+        raise NotImplementedError("Este método debe ser implementado por la subclase")
+
+    def perimetro(self):
+        raise NotImplementedError("Este método debe ser implementado por la subclase")
 
 
-from abc import ABC, abstractmethod  # Importamos las clases necesarias para crear clases abstractas
+# Clase Cuadrado que hereda de Figura
+class Cuadrado(Figura):
+    def __init__(self, lado):
+        self.lado = lado
 
-# Clase base abstracta que representa un Vehiculo
-class Vehiculo(ABC):
+    # Implementación del cálculo del área
+    def area(self):
+        return self.lado * self.lado
 
-    # Constructor de la clase Vehiculo
-    def __init__(self, nombre, velocidad_maxima):
-        self.nombre = nombre
-        self.velocidad_maxima = velocidad_maxima
-
-    # Método abstracto (no implementado aquí) para que las clases hijas lo implementen
-    @abstractmethod
-    def mover(self):
-        pass
-
-    # Método para mostrar los detalles del vehículo
-    def detalles(self):
-        print(f"Vehículo: {self.nombre}")
-        print(f"Velocidad máxima: {self.velocidad_maxima} km/h")
+    # Implementación del cálculo del perímetro
+    def perimetro(self):
+        return 4 * self.lado
 
 
-# Clase Coche que hereda de Vehiculo
-class Coche(Vehiculo):
+# Crear un objeto de la clase Cuadrado
+mi_cuadrado = Cuadrado(5)
 
-    def __init__(self, nombre, velocidad_maxima, tipo_combustible):
-        super().__init__(nombre, velocidad_maxima)
-        self.tipo_combustible = tipo_combustible
+# Llamamos a los métodos de la clase Cuadrado
+print(f"Área del cuadrado: {mi_cuadrado.area()}")
+print(f"Perímetro del cuadrado: {mi_cuadrado.perimetro()}")
 
-    # Implementación del método 'mover' específico para los coches
-    def mover(self):
-        print(
-            f"El coche {self.nombre} está moviéndose a {self.velocidad_maxima} km/h utilizando {self.tipo_combustible}.")
-
-    # Método para mostrar los detalles del coche
-    def detalles(self):
-        super().detalles()
-        print(f"Tipo de combustible: {self.tipo_combustible}")
-
-
-# Clase Bicicleta que hereda de Vehiculo
-class Bicicleta(Vehiculo):
-
-    def __init__(self, nombre, velocidad_maxima, tipo_ruedas):
-        super().__init__(nombre, velocidad_maxima)
-        self.tipo_ruedas = tipo_ruedas
-
-    # Implementación del método 'mover' específico para las bicicletas
-    def mover(self):
-        print(
-            f"La bicicleta {self.nombre} está pedaleando a {self.velocidad_maxima} km/h con ruedas {self.tipo_ruedas}.")
-
-    # Método para mostrar los detalles de la bicicleta
-    def detalles(self):
-        super().detalles()
-        print(f"Tipo de ruedas: {self.tipo_ruedas}")
-
-
-# Crear instancias de Coche y Bicicleta
-mi_coche = Coche("Toyota Corolla", 180, "Gasolina")
-mi_bicicleta = Bicicleta("Mountain Bike", 50, "Montaña")
-
-# Llamar al método 'detalles' para mostrar la información
-mi_coche.detalles()
-mi_bicicleta.detalles()
-
-# Llamar al método 'mover' para simular el movimiento
-mi_coche.mover()
-mi_bicicleta.mover()

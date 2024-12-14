@@ -1,34 +1,51 @@
 # Ejemplo de la Técnica de programación_Polimorfismo
+# Posibilita que múltiples clases compartan una interfaz común, permitiendo que objetos deestas clases sean utilizados de manera intercambiable.
+
 
 class Animal:
+
+    def __init__(self, nombre):
+        self.nombre = nombre
+
     def hacer_sonido(self):
-        print("El animal hace un sonido genérico")
+        raise NotImplementedError("Este método debe ser implementado por las subclases")
 
-# Clase hija (subclase) que hereda de Animal
-class Perro(Animal):
+
+class Dog(Animal):
+
+    def __init__(self, nombre, color):
+        super().__init__(nombre)
+        self.color = color
+        self.sonido = "Guau"
+
     def hacer_sonido(self):
-        print("¡Guau! (El perro hace un sonido característico)")
+        return f"{self.nombre} dice: {self.sonido} ¡Guau! ¡Guau!"
 
-# Clase hija (subclase) que hereda de Animal
-class Gato(Animal):
+
+class Cat(Animal):
+
+    def __init__(self, nombre, sonido):
+        super().__init__(nombre)
+        self.sonido = sonido
+
     def hacer_sonido(self):
-        print("¡Miau! (El gato hace un sonido característico)")
+        return f"{self.nombre} dice: {self.sonido} ¡Miauuu!"
 
-# Clase hija (subclase) que hereda de Animal
-class Vaca(Animal):
-    def hacer_sonido(self):
-        print("¡Muu! (La vaca hace un sonido característico)")
 
-# Función que recibe un objeto de tipo Animal y hace que suene
-def hacer_sonido_animal(animal):
-    animal.hacer_sonido()
+# Función para aplicar polimorfismo
+def mostrar_sonido(animal):
+    # Llama al método hacer_sonido del objeto de acuerdo al tipo
+    print(animal.hacer_sonido())
 
-# Crear instancias de las clases hijas
-mi_perro = Perro()
-mi_gato = Gato()
-mi_vaca = Vaca()
 
-# Llamar a la función con diferentes tipos de animales
-hacer_sonido_animal(mi_perro)  # Salida esperada: ¡Guau! (El perro hace un sonido característico)
-hacer_sonido_animal(mi_gato)   # Salida esperada: ¡Miau! (El gato hace un sonido característico)
-hacer_sonido_animal(mi_vaca)   # Salida esperada: ¡Muu! (La vaca hace un sonido característico)
+# Crear los objetos
+mi_perro1 = Dog("Tobi", "blanco")
+mi_gato1 = Cat("Dogi", "Miauu")
+
+# Llamar a la función de polimorfismo
+mostrar_sonido(mi_perro1)  # Polimorfismo: el perro hace un sonido
+mostrar_sonido(mi_gato1)  # Polimorfismo: el gato hace un sonido
+
+        
+             
+        

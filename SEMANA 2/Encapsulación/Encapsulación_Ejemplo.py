@@ -1,5 +1,5 @@
 #Ejemplo de la Técnica de programación_Encapsulación
-
+#Capacidad de ocultar la complejidad interna de un objeto y revelar solo la información esencial para su interacción.
 
 
 class CuentaBancaria:
@@ -11,7 +11,7 @@ class CuentaBancaria:
     def obtener_saldo(self):
         return self.__saldo
 
-    # Método para depositar dinero (modifica el saldo)
+    # Método para depositar dinero
     def depositar(self, cantidad):
         if cantidad > 0:
             self.__saldo += cantidad
@@ -19,7 +19,7 @@ class CuentaBancaria:
         else:
             print("La cantidad a depositar debe ser mayor a cero.")
 
-    # Método para retirar dinero (modifica el saldo)
+    # Método para retirar dinero
     def retirar(self, cantidad):
         if cantidad > 0 and cantidad <= self.__saldo:
             self.__saldo -= cantidad
@@ -46,7 +46,7 @@ print("Saldo inicial:", cuenta.obtener_saldo())
 cuenta.depositar(200)
 
 # Retirar dinero
-cuenta.retirar(100)
+cuenta.retirar(200)
 
 # Intentar retirar más dinero del disponible
 cuenta.retirar(700)
