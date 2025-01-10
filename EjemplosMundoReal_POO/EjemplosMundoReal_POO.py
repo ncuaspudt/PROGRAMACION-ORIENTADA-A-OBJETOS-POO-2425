@@ -27,6 +27,7 @@ class CarritoDeCompras:
         self.productos.append(producto)  # Se agrega el producto recibido al carrito
 
 
+
     def calcular_total(self):
         # Utiliza una expresión generadora para sumar el precio de cada producto multiplicado por su cantidad
         return sum(producto.precio * producto.cantidad for producto in self.productos)
