@@ -19,10 +19,11 @@ class Persona:
     def __del__(self):
         print(f"{self.nombre} ha dejado el programa.") #Imprime cuando la persona ha dejado el programa.
 
-# Creación de objetos
+# Al crear y eliminar instancias de Persona, se pueden observar las acciones
+# de los constructores y destructores:
 
 persona1= Persona("Javier", "ecuatoriano")
 persona1.saludar()
 
 # El destructor se ejecutará automáticamente cuando el objeto 'persona1' se destruya
-
+del persona1 # eliminar el objeto
