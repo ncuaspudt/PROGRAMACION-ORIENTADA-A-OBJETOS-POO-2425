@@ -6,7 +6,7 @@ def mostrar_codigo(ruta_script):
     # Asegúrate de que la ruta al script es absoluta
     ruta_script_absoluta = os.path.abspath(ruta_script)
     try:
-        with open(ruta_script_absoluta, 'r') as archivo:
+        with open(ruta_script_absoluta, 'r', encoding='utf-8') as archivo:
             print(f"\n--- Código de {ruta_script} ---\n")
             print(archivo.read())
     except FileNotFoundError:
