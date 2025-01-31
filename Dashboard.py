@@ -15,6 +15,7 @@ def mostrar_codigo(ruta_script):
         print(f"Ocurrió un error al leer el archivo: {e}")
 
 
+
 def mostrar_menu():
     # Define la ruta base donde se encuentra el dashboard.py
     ruta_base = os.path.dirname(__file__)
