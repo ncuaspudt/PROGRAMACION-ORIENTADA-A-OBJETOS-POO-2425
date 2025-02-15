@@ -9,30 +9,6 @@ class Producto:
         self.cantidad = cantidad
         self.precio = precio
 
-    # Métodos Getters y Setters
-    def get_id_producto(self):
-        return self.id_producto
-
-    def set_id_producto(self, id_producto):
-        self.id_producto = id_producto
-
-    def get_nombre(self):
-        return self.nombre
-
-    def set_nombre(self, nombre):
-        self.nombre = nombre
-
-    def get_cantidad(self):
-        return self.cantidad
-
-    def set_cantidad(self, cantidad):
-        self.cantidad = cantidad
-
-    def get_precio(self):
-        return self.precio
-
-    def set_precio(self, precio):
-        self.precio = precio
 
     def __str__(self):
         return f"ID: {self.id_producto}, Nombre: {self.nombre}, Cantidad: {self.cantidad}, Precio: ${self.precio}"
@@ -42,41 +18,43 @@ class Inventario:
     def __init__(self):
         # Usamos un diccionario para almacenar los productos, con id_producto como clave
         self.productos = {}
+        
+# Metodo agregar producto
 
     def agregar_producto(self, producto):
-        if producto.get_id_producto() in self.productos:
+        if producto.id_producto() in self.productos:
             print("Error: Producto con ese ID ya existe.")
         else:
             self.productos[producto.get_id_producto()] = producto
-            print(f"Producto {producto.get_nombre()} agregado correctamente.")
-
+            print(f"Producto {producto.nombre()} agregado correctamente.")
+# Metodo eliminar producto
     def eliminar_producto(self, id_producto):
         if id_producto in self.productos:
             del self.productos[id_producto]
             print(f"Producto con ID {id_producto} eliminado.")
         else:
             print("Error: Producto no encontrado.")
-
+# Metodo actualizar producto
     def actualizar_producto(self, id_producto, cantidad=None, precio=None):
         if id_producto in self.productos:
             producto = self.productos[id_producto]
             if cantidad is not None:
-                producto.set_cantidad(cantidad)
+                producto.cantidad(cantidad)
             if precio is not None:
-                producto.set_precio(precio)
+                producto.precio(precio)
             print(f"Producto con ID {id_producto} actualizado.")
         else:
             print("Error: Producto no encontrado.")
-
+# Metodo buscar producto
     def buscar_producto(self, nombre):
         found = False
         for producto in self.productos.values():
-            if nombre.lower() in producto.get_nombre().lower():
+            if nombre.lower() in producto.nombre().lower():
                 print(producto)
                 found = True
         if not found:
             print("No se encontró ningún producto con ese nombre.")
-
+# Metodo mostrar inventario
     def mostrar_inventario(self):
         if not self.productos:
             print("Inventario vacío.")
