@@ -24,10 +24,11 @@ class Inventario:
     # Cargar inventario desde el archivo
     def cargar_inventario(self):
         try:
-            with open(self.archivo, 'r') as file:
+            with open(self.archivo, 'r') as file:  # Abrir un archivo en modo de lectura
                 for line in file:
                     id_producto, nombre, cantidad, precio = line.strip().split(',')
                     self.productos[id_producto] = Producto(id_producto, nombre, int(cantidad), float(precio))
+        # Captura errores en el momento de la ejecución del código.
         except FileNotFoundError:
             print(f"Archivo {self.archivo} no encontrado, creando uno nuevo.")
         except PermissionError:
@@ -38,7 +39,7 @@ class Inventario:
     # Guardar inventario al archivo
     def guardar_inventario(self):
         try:
-            with open(self.archivo, 'w') as file:
+            with open(self.archivo, 'w') as file:    #Abrir un archivo en modo escritura
                 for producto in self.productos.values():
                     file.write(producto.to_string() + '\n')
             print("Inventario guardado exitosamente.")
