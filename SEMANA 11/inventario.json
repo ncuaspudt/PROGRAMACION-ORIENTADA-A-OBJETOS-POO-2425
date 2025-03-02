@@ -28,5 +28,11 @@
         "nombre": "Tallarin",
         "cantidad": 7,
         "precio": 14.5
+    },
+    "6": {
+        "id_producto": 6,
+        "nombre": "Panela",
+        "cantidad": 10,
+        "precio": 2.5
     }
 }
