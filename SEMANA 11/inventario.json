@@ -1,0 +1,32 @@
+{
+    "1": {
+        "id_producto": 1,
+        "nombre": "Arroz",
+        "cantidad": 20,
+        "precio": 12.75
+    },
+    "2": {
+        "id_producto": 2,
+        "nombre": "Frejol",
+        "cantidad": 10,
+        "precio": 10.5
+    },
+    "3": {
+        "id_producto": 3,
+        "nombre": "Mantequilla",
+        "cantidad": 2,
+        "precio": 4.5
+    },
+    "4": {
+        "id_producto": 4,
+        "nombre": "Fideos",
+        "cantidad": 5,
+        "precio": 3.0
+    },
+    "5": {
+        "id_producto": 5,
+        "nombre": "Tallarin",
+        "cantidad": 7,
+        "precio": 14.5
+    }
+}

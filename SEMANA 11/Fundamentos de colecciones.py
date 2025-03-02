@@ -1,4 +1,7 @@
+# Clase
+
 import json
+import os
 
 # Clase Producto
 class Producto:
@@ -8,122 +11,115 @@ class Producto:
         self.cantidad = cantidad
         self.precio = precio
 
-    def obtener_id(self):
-        return self.id_producto
+    # Métodos para actualizar el precio y la cantidad de un producto
+    def actualizar_precio(self, nuevo_precio):
+        self.precio = nuevo_precio
 
-    def obtener_nombre(self):
-        return self.nombre
+    def actualizar_cantidad(self, nueva_cantidad):
+        self.cantidad = nueva_cantidad
 
-    def obtener_cantidad(self):
-        return self.cantidad
-
-    def obtener_precio(self):
-        return self.precio
-
-    def establecer_cantidad(self, cantidad):
-        self.cantidad = cantidad
-
-    def establecer_precio(self, precio):
-        self.precio = precio
-
+    # Metodo para convertir un producto a diccionario, facilitando la serialización
     def to_dict(self):
-        return {
-            'id': self.id_producto,
-            'nombre': self.nombre,
-            'cantidad': self.cantidad,
-            'precio': self.precio
-        }
+        return {"id_producto": self.id_producto, "nombre": self.nombre, "cantidad": self.cantidad,
+                "precio": self.precio}
 
+    # Metodo para representar el producto como cadena
     def __str__(self):
         return f"ID: {self.id_producto}, Nombre: {self.nombre}, Cantidad: {self.cantidad}, Precio: {self.precio}"
 
-    class Inventario:
-        def __init__(self, archivo='inventario.json'):
-            self.archivo = archivo
-            self.productos = {}
-            self.cargar_inventario()
+# Clase Inventario
+class Inventario:
+    def __init__(self, archivo="inventario.json"):
+        self.archivo = archivo
+        self.productos = {}
+        self.cargar_inventario()  # Al iniciar, se carga el inventario desde el archivo
 
-        # Cargar inventario desde el archivo
-        def cargar_inventario(self):
+    # Cargar inventario desde el archivo
+    def cargar_inventario(self):
+        if not os.path.exists(self.archivo):  # Verifica si el archivo no existe
+            print(f"Archivo {self.archivo} no encontrado, creando uno nuevo.")
+            self.crear_archivo_vacio()  # Si no existe, crea un archivo vacío
+        else:
             try:
                 with open(self.archivo, 'r') as file:
-                    productos_serializados = json.load(file)
-                    for producto_data in productos_serializados.values():
-                        producto = Producto(
-                            producto_data['id'],
-                            producto_data['nombre'],
-                            producto_data['cantidad'],
-                            producto_data['precio']
-                        )
-                        self.productos[producto.obtener_id()] = producto
-            except FileNotFoundError:
-                print(f"Archivo {self.archivo} no encontrado, creando uno nuevo.")
+                    data = json.load(file)
+                    self.productos = {int(k): Producto(**v) for k, v in data.items()}
             except json.JSONDecodeError:
                 print(f"Error al decodificar el archivo {self.archivo}, creando uno nuevo.")
+                self.crear_archivo_vacio()  # Si no se puede decodificar, crea un archivo vacío
             except Exception as e:
                 print(f"Se produjo un error al cargar el inventario: {e}")
 
-        # Guardar inventario al archivo
-        def guardar_inventario(self):
-            try:
-                with open(self.archivo, 'w') as file:
-                    productos_serializados = {id_producto: producto.to_dict() for id_producto, producto in
-                                              self.productos.items()}
-                    json.dump(productos_serializados, file, indent=4)
-                print("Inventario guardado exitosamente.")
-            except PermissionError:
-                print(f"Error de permisos al intentar guardar el archivo {self.archivo}.")
-            except Exception as e:
-                print(f"Se produjo un error al guardar el inventario: {e}")
+    # Metodo para crear un archivo vacío de JSON
+    def crear_archivo_vacio(self):
+        try:
+            with open(self.archivo, 'w') as file:
+                json.dump({}, file, indent=4)
+            print(f"Archivo {self.archivo} creado correctamente.")
+        except Exception as e:
+            print(f"Se produjo un error al crear el archivo: {e}")
 
-        # Metodo agregar producto
-        def agregar_producto(self, producto):
-            if producto.obtener_id() in self.productos:
-                print("Error: Producto con ese ID ya existe.")
-            else:
-                self.productos[producto.obtener_id()] = producto
-                self.guardar_inventario()  # Guardar cambios en el archivo
-                print(f"Producto {producto.obtener_nombre()} agregado correctamente.")
+    # Guardar inventario al archivo
+    def guardar_inventario(self):
+        try:
+            with open(self.archivo, 'w') as file:
+                json.dump({k: v.to_dict() for k, v in self.productos.items()}, file, indent=4)
+            print("Inventario guardado exitosamente.")
+        except PermissionError:
+            print(f"Error de permisos al intentar guardar el archivo {self.archivo}.")
+        except Exception as e:
+            print(f"Se produjo un error al guardar el inventario: {e}")
 
-        # Metodo eliminar producto
-        def eliminar_producto(self, id_producto):
-            if id_producto in self.productos:
-                del self.productos[id_producto]
-                self.guardar_inventario()  # Guardar cambios en el archivo
-                print(f"Producto con ID {id_producto} eliminado.")
-            else:
-                print("Error: Producto no encontrado.")
+    # Metodo agregar producto
+    def agregar_producto(self, producto):
+        if producto.id_producto in self.productos:
+            print("Error: Producto con ese ID ya existe.")
+        else:
+            self.productos[producto.id_producto] = producto
+            self.guardar_inventario()  # Guardar cambios en el archivo
+            print("Producto agregado correctamente.")
 
-        # Metodo actualizar producto
-        def actualizar_producto(self, id_producto, cantidad=None, precio=None):
-            if id_producto in self.productos:
-                producto = self.productos[id_producto]
-                if cantidad is not None:
-                    producto.establecer_cantidad(cantidad)
-                if precio is not None:
-                    producto.establecer_precio(precio)
-                self.guardar_inventario()  # Guardar cambios en el archivo
-                print(f"Producto con ID {id_producto} actualizado.")
-            else:
-                print("Error: Producto no encontrado.")
+    # Metodo eliminar producto
+    def eliminar_producto(self, id_producto):
+        if id_producto in self.productos:
+            del self.productos[id_producto]
+            self.guardar_inventario()  # Guardar cambios en el archivo
+            print("Producto eliminado.")
+        else:
+            print("Error: Producto no encontrado.")
 
-        # Metodo buscar producto
-        def buscar_producto(self, nombre):
-            found = False
+    # Metodo actualizar precio
+    def actualizar_precio(self, id_producto, nuevo_precio):
+        if id_producto in self.productos:
+            self.productos[id_producto].actualizar_precio(nuevo_precio)
+            self.guardar_inventario()  # Guardar cambios en el archivo
+            print("Precio actualizado correctamente.")
+        else:
+            print("Error: Producto no encontrado.")
+
+    # Metodo actualizar cantidad
+    def actualizar_cantidad(self, id_producto, nueva_cantidad):
+        if id_producto in self.productos:
+            self.productos[id_producto].actualizar_cantidad(nueva_cantidad)
+            self.guardar_inventario()  # Guardar cambios en el archivo
+            print("Cantidad actualizada correctamente.")
+        else:
+            print("Error: Producto no encontrado.")
+
+    # Buscar producto por nombre (no importa mayúsculas o minúsculas)
+    def buscar_producto_nombre(self, nombre):
+        resultado = [p for p in self.productos.values() if p.nombre.lower() == nombre.lower()]
+        return resultado if resultado else "Producto no encontrado."
+
+    # Metodo mostrar inventario
+    def mostrar_inventario(self):
+        if self.productos:
             for producto in self.productos.values():
-                if nombre.lower() in producto.obtener_nombre().lower():
-                    print(producto)
-                    found = True
-            if not found:
-                print("No se encontró ningún producto con ese nombre.")
+                print(producto)
+        else:
+            print("El inventario está vacío.")
 
-        # Metodo mostrar inventario
-        def mostrar_inventario(self):
-            if not self.productos:
-                print("Inventario vacío.")
-            else:
-                for producto in self.productos.values():
-                    print(producto)
+# Menú interactivo
 def menu():
     inventario = Inventario()  # Al crear el inventario, se cargan los productos desde el archivo
 
@@ -140,7 +136,7 @@ def menu():
             break
         elif opcion == '1':
             # Agregar producto
-            id_producto = input("Ingrese el ID del producto: ")
+            id_producto = int(input("Ingrese el ID del producto: "))
             nombre = input("Ingrese el nombre del producto: ")
             cantidad = int(input("Ingrese la cantidad: "))
             precio = float(input("Ingrese el precio: "))
@@ -148,22 +144,29 @@ def menu():
             inventario.agregar_producto(producto)
         elif opcion == '2':
             # Eliminar producto
-            id_producto = input("Ingrese el ID del producto a eliminar: ")
+            id_producto = int(input("Ingrese el ID del producto a eliminar: "))
             inventario.eliminar_producto(id_producto)
         elif opcion == '3':
             # Actualizar producto
-            id_producto = input("Ingrese el ID del producto a actualizar: ")
+            id_producto = int(input("Ingrese el ID del producto a actualizar: "))
             cantidad = input("Ingrese la nueva cantidad (deje en blanco para no cambiar): ")
             precio = input("Ingrese el nuevo precio (deje en blanco para no cambiar): ")
 
-            cantidad = int(cantidad) if cantidad else None
-            precio = float(precio) if precio else None
-
-            inventario.actualizar_producto(id_producto, cantidad, precio)
+            if cantidad:  # Solo actualizar si el usuario ingresa un valor
+                cantidad = int(cantidad)
+                inventario.actualizar_cantidad(id_producto, cantidad)
+            if precio:
+                precio = float(precio)
+                inventario.actualizar_precio(id_producto, precio)
         elif opcion == '4':
             # Buscar producto
             nombre = input("Ingrese el nombre del producto a buscar: ")
-            inventario.buscar_producto(nombre)
+            resultado = inventario.buscar_producto_nombre(nombre)
+            if isinstance(resultado, list):
+                for p in resultado:
+                    print(p)
+            else:
+                print(resultado)
         elif opcion == '5':
             # Mostrar inventario
             inventario.mostrar_inventario()
