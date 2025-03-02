@@ -1,5 +1,5 @@
 
-#Elaboración de un inventarios con las clases inventario y producto con utilización de colecciones.
+#Elaboración de un inventario.json con las clases inventario y producto con utilización de colecciones.
 
 import json
 import os
