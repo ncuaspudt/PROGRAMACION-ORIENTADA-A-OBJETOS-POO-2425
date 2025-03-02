@@ -34,5 +34,11 @@
         "nombre": "Panela",
         "cantidad": 10,
         "precio": 2.5
+    },
+    "7": {
+        "id_producto": 7,
+        "nombre": "Aceite",
+        "cantidad": 5,
+        "precio": 10.0
     }
 }
