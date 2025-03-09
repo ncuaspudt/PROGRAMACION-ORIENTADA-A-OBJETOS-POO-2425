@@ -1,0 +1,23 @@
+{
+    "\"001\"": {
+        "isbn": "001",
+        "titulo": "La Odisea",
+        "autor": "Homero",
+        "categoria": "Genero narrativo epico",
+        "prestado": false
+    },
+    "002": {
+        "isbn": "002",
+        "titulo": "El Alquimista",
+        "autor": "Paulo Coelho",
+        "categoria": "Literatura fantastica",
+        "prestado": false
+    },
+    "003": {
+        "isbn": "003",
+        "titulo": "Romeo y Julieta",
+        "autor": "Willian Shakespeare",
+        "categoria": "Tragedia",
+        "prestado": false
+    }
+}
