@@ -19,5 +19,12 @@
         "autor": "Willian Shakespeare",
         "categoria": "Tragedia",
         "prestado": false
+    },
+    "004": {
+        "isbn": "004",
+        "titulo": "Cien años de soledad",
+        "autor": "Gabriel Garcia Marquez",
+        "categoria": "Literatura",
+        "prestado": false
     }
 }
