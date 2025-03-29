@@ -70,6 +70,7 @@ boton_añadir.pack(side=tk.LEFT, padx=10)
 boton_eliminar = tk.Button(frame_botones, text='ELIMINAR', background="grey", command=eliminar_tarea)
 boton_eliminar.pack(side=tk.LEFT, padx=10)
 
+
 # Botón para marcar tarea como completada
 boton_completada = tk.Button(frame_botones, text='TAREA COMPLETADA', background="grey", command=tarea_completada)
 boton_completada.pack(side=tk.LEFT, padx=10)
