@@ -32,11 +32,11 @@ def eliminar_evento():
 def salir():
     root.quit()  # Cerrar la aplicación
 
-
 # Creación de la ventana principal
 root = tk.Tk()
 root.title('Agenda Personal')
 root.geometry('600x500')
+
 
 # Crear la lista de eventos (Treeview)
 tree = ttk.Treeview(root, columns=("Fecha", "Hora", "Descripción"), show="headings")

@@ -1,13 +1,14 @@
 # Ejemplo de la Técnica de programación_Abstracción
 # Simplifica la realidad, concentrándose en los aspectos esenciales de un objeto y ocultando los detalles innecesarios.
 
+
 # Clase base "Figura"
 class Figura:
     def area(self):
-        raise NotImplementedError("Este método debe ser implementado por la subclase")
+        raise NotImplementedError
 
     def perimetro(self):
-        raise NotImplementedError("Este método debe ser implementado por la subclase")
+        raise NotImplementedError
 
 
 # Clase Cuadrado que hereda de Figura
